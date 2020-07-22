@@ -1,0 +1,38 @@
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin-->selain: spa.js
+
+note over selain:
+selain alkaa suorittamaan
+spa.js -tiedostoa
+end note
+
+selain->palvelin: HTTP GET: https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: muistiinpanot JSON-muodossa: [{"content":"HTML is easy","date":"2019-05..
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
+
+note over selain:
+käyttäjä kirjoittaa form -kenttään tekstiä ja
+painaa Save -nappia
+end note
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka kuuntelee Form -elementin lähettämistä
+
+tapahtumankäsittelijä kutsuu metodin joka 
+estää sivun uudelleenlataamisen, lisää uuden muistiinpanon
+notes -taulukkoon, tyhjentää formin input -kentän, piirtää
+sivun uudelleen ja lähettää muistiinpanon JSON -muodossa 
+palvelimelle kutsumalla sendToServer -metodia
+end note
+
+selain->palvelin: HTTP POST: https://fulstack-exampleapp.herokuapp.com/new_note_spa
+palvelin-->selain: HTTP Status code 201 Created
